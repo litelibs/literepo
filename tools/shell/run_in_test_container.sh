@@ -21,7 +21,7 @@ function run_test_container() {
 	local container_name
 	local container_status
 
-	container_name="$image_tag_name"
+	container_name="$(cut -d':' -f1 <<<"$image_tag_name")"
 	container_id="$(docker ps -aqf "name=^${container_name}$")" || exit_err
 
 	if [ -n "$container_id" ]; then
@@ -48,7 +48,7 @@ function run_in_test_container() {
 	local container_id
 	local path
 
-	image_tag_name="cw-testing"
+	image_tag_name="cw-testing:1"
 	workdir_path="/cw_testing"
 
 	if [ -z "$(docker images -q "$image_tag_name")" ]; then
