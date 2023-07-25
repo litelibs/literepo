@@ -5,6 +5,16 @@ function exit_err() {
 	exit 1
 }
 
+function is_valid_branch_name() {
+	local branch_name="$1"
+
+	if grep "^\(feat\|fix\|devenv\)-CW-[0-9]\+-[a-z-]\+$" <<<"$branch_name" >/dev/null; then
+		echo 1
+		return
+	fi
+
+	echo 0
+}
 
 function build_test_container() {
 	local image_tag_name="$1"
