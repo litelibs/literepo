@@ -35,7 +35,7 @@ function main() {
 	run_test 0 "devenv-CW-jira-ticket-number-missing"
 	run_test 0 "devenv-CWO-9-wrong-jira-project"
 	run_test 0 "feature-CW-3-invalid-prefix"
-	run_test 0 "numbers-CW-55-in-branch-names-are-2-be-denied"
+	run_test 0 "feat-CW-55-numbers-in-branch-names-are-2-be-denied"
 	run_test 0 "feat-CW-9-slashes/are-not/allowed"
 	run_test 0 "devenv-CW-10-NoCapital-letters"
 	run_test 0 "CW-1234"
