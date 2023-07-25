@@ -1,0 +1,31 @@
+---
+name: pr-check
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  check-branch-name-validity:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: check the validity of the branch name
+        run: |
+          . tools/shell/common/functions.sh
+          [[ "$(is_valid_branch_name "$branch_name")" -eq "1" ]]
+        env:
+          branch_name="${{ github.event.pull_request.head.ref }}"
+
+  check-branch-name-equals-pr-title:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: check if the branch name and pr title are the same
+        run: |
+          [[ "$branch_name" == "$pr_title" ]]
+        env:
+          branch_name="${{ github.event.pull_request.head.ref }}"
+          pr_title="${{ github.event.pull_request.title }}"
