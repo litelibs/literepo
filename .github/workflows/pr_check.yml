@@ -16,7 +16,7 @@ jobs:
           . tools/shell/common/functions.sh
           [[ "$(is_valid_branch_name "$branch_name")" -eq "1" ]]
         env:
-          branch_name="${{ github.event.pull_request.head.ref }}"
+          branch_name: "${{ github.event.pull_request.head.ref }}"
 
   check-branch-name-equals-pr-title:
     runs-on: ubuntu-22.04
