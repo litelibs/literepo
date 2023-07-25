@@ -27,5 +27,5 @@ jobs:
         run: |
           [[ "$branch_name" == "$pr_title" ]]
         env:
-          branch_name="${{ github.event.pull_request.head.ref }}"
-          pr_title="${{ github.event.pull_request.title }}"
+          branch_name: "${{ github.event.pull_request.head.ref }}"
+          pr_title: "${{ github.event.pull_request.title }}"
