@@ -2,8 +2,13 @@
 import { Text, Spacer } from "@nextui-org/react";
 import { Box } from "../components/Box";
 
-export const Content = () => (
+type Props = {
+  fileNames: string[];
+};
+
+export const Content = ({ fileNames }: Props) => (
   <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
+    {fileNames}
     <Text h2>Lorem ipsum dolor sit amet</Text>
     <Text size="$lg">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
