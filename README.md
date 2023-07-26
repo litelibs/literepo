@@ -1,10 +1,20 @@
 # literepo
 
-`literepo` is a simple web UI that is used for managing remote repositories
+`literepo` is a simple [Next.js](https://nextjs.org/) web UI that is used for managing remote repositories
 
 # Developers
 
 This remaining section outlines information for developers that want to contribute to this project
+
+## Run
+
+For local deployments
+
+```
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Testing
 

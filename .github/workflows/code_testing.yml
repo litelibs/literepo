@@ -4,14 +4,16 @@ name: code-testing
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   run-tests:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
+      - name: install
+        run: npm install
+      - name: format
+        run: npm run format
       - name: lint
-        run: |
-          bash tools/shell/run_in_test_container.sh \
-            bash tools/shell/testing/lint.sh
+        run: npm run lint
