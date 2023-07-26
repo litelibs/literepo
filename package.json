@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format": "npx prettier . --check",
-    "lint": "next lint"
+    "lint": "bash tools/shell/run_in_test_container.sh bash tools/shell/testing/lint.sh && next lint"
   },
   "dependencies": {
     "@types/node": "20.4.5",
