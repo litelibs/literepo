@@ -11,5 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
+      - name: format
+        run: npm run format
       - name: lint
         run: npm run lint
