@@ -49,6 +49,7 @@ function main() {
 	check_sources
 
 	npm install || exit_err
+	npm run format || exit_err
 	npm run lint || exit_err
 	lint_sh
 	lint_yml
