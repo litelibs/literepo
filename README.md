@@ -4,7 +4,7 @@
 
 # Developers
 
-This remaining section outlines information for developers that want to contribute to the `usagef` project
+This remaining section outlines information for developers that want to contribute to this project
 
 ## Testing
 
