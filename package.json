@@ -10,6 +10,7 @@
     "lint": "bash tools/shell/run_in_test_container.sh bash tools/shell/testing/lint.sh && next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.13",
     "@types/node": "20.4.5",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",
