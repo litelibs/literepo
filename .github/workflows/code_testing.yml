@@ -1,10 +1,10 @@
 ---
 name: code-testing
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   run-tests:
