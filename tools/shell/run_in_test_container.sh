@@ -31,14 +31,24 @@ function run_test_container() {
 		return
 	fi
 
-	docker run \
-		--workdir "$workdir_path" \
+	container_id="$(
+		docker run \
+			--workdir "$workdir_path" \
+			--interactive \
+			--tty \
+			--detach \
+			--name "$container_name" \
+			"$image_tag_name" ||
+			exit_err
+	)" || exit_err
+
+	docker exec \
 		--interactive \
 		--tty \
-		--detach \
-		--name "$container_name" \
-		"$image_tag_name" ||
-		exit_err
+		"$container_id" \
+		git init >/dev/null || exit_err
+
+	echo "$container_id"
 }
 
 function run_in_test_container() {
@@ -63,6 +73,7 @@ function run_in_test_container() {
 
 	echo "execing '$exec_str' in container '$container_id'"
 
+	docker exec --tty "$container_id" git add . || exit_err
 	# shellcheck disable=SC2086 # reason: the exec str may have args
 	docker exec --tty "$container_id" ${exec_str} || exit_err
 }
