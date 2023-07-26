@@ -8,7 +8,7 @@ function exit_err() {
 function is_valid_branch_name() {
 	local branch_name="$1"
 
-	if grep "^\(feat\|fix\|devenv\)-CW-[0-9]\+-[a-z-]\+$" <<<"$branch_name" >/dev/null; then
+	if grep "^\(feat\|fix\|devenv\)-[a-z-]\+$" <<<"$branch_name" >/dev/null; then
 		echo 1
 		return
 	fi

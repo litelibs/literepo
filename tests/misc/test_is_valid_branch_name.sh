@@ -29,16 +29,13 @@ function main() {
 
 	echo "${msg} starting..."
 
-	run_test 1 "feat-CW-123-some-new-feature-branch"
-	run_test 1 "fix-CW-0-branch-for-a-bugfix"
-	run_test 1 "devenv-CW-9-a-branch-for-dev-setup-stuff"
-	run_test 0 "devenv-CW-jira-ticket-number-missing"
-	run_test 0 "devenv-CWO-9-wrong-jira-project"
-	run_test 0 "feature-CW-3-invalid-prefix"
-	run_test 0 "feat-CW-55-numbers-in-branch-names-are-2-be-denied"
-	run_test 0 "feat-CW-9-slashes/are-not/allowed"
-	run_test 0 "devenv-CW-10-NoCapital-letters"
-	run_test 0 "CW-1234"
+	run_test 1 "feat-some-new-feature-branch"
+	run_test 1 "fix-branch-for-a-bugfix"
+	run_test 1 "devenv-a-branch-for-dev-setup-stuff"
+	run_test 0 "feature-invalid-prefix"
+	run_test 0 "feat-numbers-in-branch-names-are-2-be-denied"
+	run_test 0 "feat-slashes/are-not/allowed"
+	run_test 0 "devenv-NoCapital-letters"
 
 	echo "${msg} passed!"
 }
