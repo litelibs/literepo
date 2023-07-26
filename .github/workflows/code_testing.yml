@@ -16,4 +16,5 @@ jobs:
       - name: format
         run: npm run format
       - name: lint
-        run: npm run lint
+        run: |
+          bash tools/shell/run_in_test_container.sh bash tools/shell/lint.sh

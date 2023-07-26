@@ -48,6 +48,8 @@ function check_sources() {
 function main() {
 	check_sources
 
+	npm install || exit_err
+	npm run lint || exit_err
 	lint_sh
 	lint_yml
 	lint_md
