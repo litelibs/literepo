@@ -1,3 +1,4 @@
+"use client";
 import { Text, Spacer } from "@nextui-org/react";
 import { Box } from "../components/Box";
 

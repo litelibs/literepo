@@ -1,7 +1,3 @@
-// lazy
-"use client"; // yep
-// too lazy
-
 import React from "react";
 import { TopNav } from "../components/TopNav";
 import { Content } from "../components/Content";
