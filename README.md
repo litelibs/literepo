@@ -31,7 +31,7 @@ linting './README.md'
 #### tools used
 
 - [shellcheck](https://www.shellcheck.net/) is linting all `.sh` files
-- [yamllint](https://github.com/adrienverge/yamllint) is linting all '.yml' and '.yaml' files
+- [yamllint](https://github.com/adrienverge/yamllint) is linting all `.yml` and `.yaml` files
 - [shfmt](https://github.com/mvdan/sh) is checking the formatting of all `.sh` files
 - [mdformat](https://pypi.org/project/mdformat/) is checking the formatting of all `README.md` files
 
