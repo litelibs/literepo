@@ -9,6 +9,7 @@ This remaining section outlines information for developers that want to contribu
 ## Testing
 
 `tools/shell/testing/lint.sh` is the script that lints all source code in this repo
+
 ```
 Usage: lint.sh
 ```
@@ -24,6 +25,7 @@ linting './tools/shell/testing/lint.sh'
 linting './tools/shell/run_in_test_container.sh'
 linting './.github/workflows/code_testing.yml'
 linting './.github/workflows/pr_check.yml'
+linting './README.md'
 ```
 
 #### tools used
@@ -31,12 +33,14 @@ linting './.github/workflows/pr_check.yml'
 - [shellcheck](https://www.shellcheck.net/) is linting all `.sh` files
 - [yamllint](https://github.com/adrienverge/yamllint) is linting all '.yml' and '.yaml' files
 - [shfmt](https://github.com/mvdan/sh) is checking the formatting of all `.sh` files
+- [mdformat](https://pypi.org/project/mdformat/) is checking the formatting of all `README.md` files
 
 #### Docker
 
 [Docker](https://www.docker.com/) can be used for testing on your machine if you are experiencing environment or dependency issues
 
 `tools/shell/run_in_test_container.sh` is the script that execs via containers of [Dockerfile](Dockerfile)
+
 ```
 Usage: run_in_test_container.sh [expression ...]
 ```
@@ -53,6 +57,7 @@ linting './tools/shell/testing/lint.sh'
 linting './tools/shell/run_in_test_container.sh'
 linting './.github/workflows/code_testing.yml'
 linting './.github/workflows/pr_check.yml'
+linting './README.md'
 ```
 
 ## Git
