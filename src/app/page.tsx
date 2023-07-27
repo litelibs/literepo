@@ -8,15 +8,15 @@ import { headers } from "next/headers";
 
 export default async function App() {
   const headersList = headers();
-  const url = new URL(
-    headersList.get("referer") || process.env.NEXT_PUBLIC_SITE_URL || "",
-  );
+  //const url = new URL(
+  //  headersList.get("referer") || process.env.NEXT_PUBLIC_SITE_URL || "",
+  //);
 
   return (
     <Box css={{ maxW: "100%" }}>
       <TopNav />
       <Content
-        currPath={url.pathname}
+        //pathInit={url.pathname}
         filePaths={await git.listFiles({ fs, dir: "." })}
       />
     </Box>

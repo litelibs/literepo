@@ -10,11 +10,18 @@ export class File {
   name: string;
   children: NameMap;
   parent: File | null;
+  filePath: string;
 
-  constructor(name: string, children: File[], parent: File | null) {
+  constructor(
+    name: string,
+    children: File[],
+    parent: File | null,
+    filePath: string,
+  ) {
     this.name = name;
     this.parent = parent;
     this.children = {};
+    this.filePath = filePath;
 
     if (children === null) return;
 
@@ -23,6 +30,7 @@ export class File {
         children[i].name,
         Object.values(children[i].children),
         this,
+        `${this.filePath}/${children[i].name}`,
       );
   }
 
@@ -37,14 +45,19 @@ export class File {
     for (let i = 0; i < pathSections.length; i++) {
       let childName = pathSections[i];
       if (!(childName in curr.children))
-        curr.children[childName] = new File(childName, [], curr);
+        curr.children[childName] = new File(
+          childName,
+          [],
+          curr,
+          "/" + pathSections.slice(0, i + 1).join("/"),
+        );
       curr = curr.children[childName];
     }
     return File.#constructFromPaths(root, filePaths.slice(1));
   }
 
   static constructFromPaths(filePaths: string[]): File {
-    return File.#constructFromPaths(new File("/", [], null), filePaths);
+    return File.#constructFromPaths(new File("/", [], null, "/"), filePaths);
   }
 
   toDict(): Dict {

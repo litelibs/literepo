@@ -1,44 +1,40 @@
 "use client";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Box } from "../components/Box";
 import { FileLink } from "../components/FileLink";
 import { File } from "../file";
 
-const createFileLinks = (files: File[]): JSX.Element => {
+const createFileLinks = (
+  files: File[],
+  setCurrFile: Dispatch<SetStateAction<File>>,
+): JSX.Element => {
   const fileLinks: JSX.Element[] = [];
   for (let i = 0; i < files.length; i++)
-    fileLinks.push(<FileLink file={files[i]} />);
+    fileLinks.push(<FileLink file={files[i]} setCurrFile={setCurrFile} />);
   return <>{fileLinks}</>;
 };
 
-const getCurrFile = (root: File, currPath: string): File => {
-  let currFile = root;
-  let pathSections: string[];
-
-  if (currPath === "/") return root;
-
-  pathSections = currPath.split("/").slice(1);
-  for (let i = 0; i < pathSections.length; i++) {
-    currFile = currFile.children[pathSections[i]];
-  }
-  return currFile;
-};
-
 type Props = {
-  currPath: string;
   filePaths: string[];
 };
 
-export const Content = ({ currPath, filePaths }: Props) => {
+export const Content = ({ filePaths }: Props) => {
   const rootDir = File.constructFromPaths(filePaths);
-  const currFile = getCurrFile(rootDir, currPath);
+  const [currFile, setCurrFile] = useState(rootDir);
+
+  useEffect(() => {
+    // the replaceState func is randomly appending instead of replacing (presetting to '/' is a patch)
+    window.history.replaceState(null, "", "/");
+    window.history.replaceState(null, "", "path" + currFile.filePath);
+  }, [currFile]);
 
   return (
     <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
       <FileLink
-        file={currFile.parent || new File("./", [], null)}
-        isParent={true}
+        file={currFile.parent || new File("/", [], null, "/")}
+        setCurrFile={setCurrFile}
       />
-      {createFileLinks(Object.values(currFile.children))}
+      {createFileLinks(Object.values(currFile.children), setCurrFile)}
     </Box>
   );
 };
