@@ -9,7 +9,7 @@ export default async function App() {
   return (
     <Box css={{ maxW: "100%" }}>
       <TopNav />
-      <Content fileNames={await git.listFiles({ fs, dir: "." })} />
+      <Content filePaths={await git.listFiles({ fs, dir: "." })} />
     </Box>
   );
 }
