@@ -1,20 +1,37 @@
 import { Link } from "@nextui-org/react";
 import { File } from "../file";
+import { useRouter } from "next/navigation";
 
 type Props = {
   file: File;
+  isParent?: boolean;
 };
 
-export const FileLink = ({ file }: Props) => {
+export const FileLink = ({ file, isParent }: Props) => {
   const isDir = Object.keys(file.children).length > 0;
+  const router = useRouter();
+  const currPath =
+    window.location.pathname === "/" ? "" : window.location.pathname;
+
+  const onPressLink = (
+    pathName: string,
+    fileName: string,
+    isToParent: boolean,
+  ) => {
+    const newPath = isToParent
+      ? pathName.split("/").slice(0, -1).join("/")
+      : `${pathName}/${fileName}`;
+    window.history.pushState(null, "", newPath);
+    router.refresh();
+  };
 
   return (
     <>
       <Link
-        css={{ color: isDir ? "Blue" : "Black" }}
-        href={`${window.location.pathname}${file.name}`}
+        onPress={() => onPressLink(currPath, file.name, isParent || false)}
+        css={{ color: isDir ? "Blue" : "Black", cursor: "pointer" }}
       >
-        {`${file.name}${isDir ? "/" : ""}`}
+        {isParent ? "../" : file.name}
       </Link>
       <br />
     </>
