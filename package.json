@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "mocha tests/**/*.tsx",
+    "test": "TS_NODE_PROJECT='./tsconfig.commonjs.json' mocha --require ts-node/register tests/**/*.tsx",
     "format": "npx prettier . --check",
     "lint": "next lint"
   },
