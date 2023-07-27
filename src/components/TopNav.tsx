@@ -7,7 +7,7 @@ export const TopNav = () => {
     <Navbar maxWidth={"fluid"} disableBlur isBordered variant={"sticky"}>
       <Navbar.Brand>
         {/*<AcmeLogo />*/}
-        <Text size={"x-large"} weight={"extrabold"} color="inherit" hideIn="xs">
+        <Text css={{paddingLeft: "12px",}} size={"x-large"} weight={"extrabold"} color="inherit" hideIn="xs">
           literepo
         </Text>
       </Navbar.Brand>
