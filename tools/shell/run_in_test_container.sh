@@ -43,8 +43,6 @@ function run_test_container() {
 	)" || exit_err
 
 	docker exec \
-		--interactive \
-		--tty \
 		"$container_id" \
 		git init >/dev/null || exit_err
 
