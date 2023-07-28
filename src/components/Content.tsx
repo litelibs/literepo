@@ -41,7 +41,7 @@ export const Content = ({ filePaths, directPath }: Props) => {
     <NextUIProvider>
       <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
         <FileLink
-          file={currFile.parent || new File("/", [], null, "/")}
+          file={currFile.parent || new File("", [], null, "")}
           setCurrFile={setCurrFile}
         />
         {createFileLinks(Object.values(currFile.children), setCurrFile)}
