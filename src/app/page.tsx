@@ -7,7 +7,7 @@ import { Box } from "../components/Box";
 import { headers } from "next/headers";
 import { headerKeyPath, pathPrefix } from "@/middleware";
 
-export default async () => {
+export default async function App() {
   const headersList = headers();
   const directPath = headersList.get(headerKeyPath);
   const removePrefix = (pathStr: string): string =>
@@ -24,4 +24,4 @@ export default async () => {
       />
     </Box>
   );
-};
+}
