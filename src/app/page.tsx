@@ -7,7 +7,7 @@ import { Box } from "../components/Box";
 import { headers } from "next/headers";
 import { headerKeyPath } from "@/middleware";
 
-export default async function App() {
+export default async () => {
   const headersList = headers();
   const directPath = headersList.get(headerKeyPath);
 
@@ -20,4 +20,4 @@ export default async function App() {
       />
     </Box>
   );
-}
+};
