@@ -26,10 +26,13 @@ type Props = {
 };
 
 export const Content = ({ filePaths, directPath }: Props) => {
+  const [isSsr, setIsSsr] = useState(true);
   const rootDir = File.constructFromPaths(filePaths);
   const [currFile, setCurrFile] = useState(
     directPath === null ? rootDir : File.getFromRoot(rootDir, directPath),
   );
+
+  useEffect(() => setIsSsr(false));
 
   useEffect(() => {
     // the replaceState func is randomly appending instead of replacing (presetting to '/' is a patch)
@@ -38,14 +41,16 @@ export const Content = ({ filePaths, directPath }: Props) => {
   }, [currFile]);
 
   return (
-    <NextUIProvider>
-      <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
-        <FileLink
-          file={currFile.parent || new File("", [], null, "")}
-          setCurrFile={setCurrFile}
-        />
-        {createFileLinks(Object.values(currFile.children), setCurrFile)}
-      </Box>
-    </NextUIProvider>
+    !isSsr && (
+      <NextUIProvider>
+        <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
+          <FileLink
+            file={currFile.parent || new File("", [], null, "")}
+            setCurrFile={setCurrFile}
+          />
+          {createFileLinks(Object.values(currFile.children), setCurrFile)}
+        </Box>
+      </NextUIProvider>
+    )
   );
 };
