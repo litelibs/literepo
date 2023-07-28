@@ -7,7 +7,7 @@ type Props = {
   setCurrFile: Dispatch<SetStateAction<File>>;
 };
 
-export const FileLink = ({ file, setCurrFile }: Props) => {
+export const FileLink = ({ file, setCurrFile }: Props): JSX.Element => {
   const isDir = Object.keys(file.children).length > 0;
 
   return (

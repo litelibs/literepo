@@ -4,7 +4,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import React from "react";
 import { Navbar, Button, Link, Text } from "@nextui-org/react";
 
-export const TopNav = () => {
+export const TopNav = (): JSX.Element => {
   const [isSsr, setIsSsr] = useState(true);
 
   useEffect(() => setIsSsr(false), []);

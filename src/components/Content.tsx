@@ -25,7 +25,7 @@ type Props = {
   directPath: string | null;
 };
 
-export const Content = ({ filePaths, directPath }: Props) => {
+export const Content = ({ filePaths, directPath }: Props): JSX.Element => {
   const [isSsr, setIsSsr] = useState(true);
   const rootDir = File.constructFromPaths(filePaths);
   const [currFile, setCurrFile] = useState(
