@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
   });
 }
 
+// webpack breaks if this matcher field isn't written explicity (no str vars or interpolation)
 export const config = {
-  matcher: "/path/:path*",
+  matcher: ["/", "/path/:path*"],
 };
