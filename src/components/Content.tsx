@@ -32,7 +32,7 @@ export const Content = ({ filePaths, directPath }: Props) => {
     directPath === null ? rootDir : File.getFromRoot(rootDir, directPath),
   );
 
-  useEffect(() => setIsSsr(false));
+  useEffect(() => setIsSsr(false), []);
 
   useEffect(() => {
     // the replaceState func is randomly appending instead of replacing (presetting to '/' is a patch)

@@ -7,7 +7,7 @@ import { Navbar, Button, Link, Text } from "@nextui-org/react";
 export const TopNav = () => {
   const [isSsr, setIsSsr] = useState(true);
 
-  useEffect(() => setIsSsr(false));
+  useEffect(() => setIsSsr(false), []);
 
   if (isSsr) return <></>;
 
