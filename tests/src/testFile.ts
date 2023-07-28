@@ -1,6 +1,8 @@
 import assert from "assert";
 import { File } from "../../src/file";
 
+const deepCopy = (file: File): File => JSON.parse(JSON.stringify(file));
+
 describe("constructFromPaths with toDict (complex test cases)", function () {
   it("empty input", function () {
     assert.deepEqual(File.constructFromPaths([]).toDict(), {});
@@ -83,5 +85,41 @@ describe("getFromRoot", () => {
     file2.children[file3.name] = file3;
 
     assert.deepEqual(File.getFromRoot(root, filePath), file3);
+  });
+});
+
+describe("createFilePath", () => {
+  it("root dir", () => {
+    const currFile = new File("/", [], null, "/");
+    assert.deepEqual(File.createFilePath(currFile), [currFile]);
+  });
+
+  it("one level", () => {
+    const parent1 = new File("/", [], null, "/");
+    const currFile = new File("this", [], parent1, "/this");
+    assert.deepEqual(File.createFilePath(currFile), [parent1, currFile]);
+  });
+
+  it("multi level", () => {
+    const random = new File("random", [], null, "invalid/path");
+
+    const parent3 = new File("/", [], null, "/");
+    const parent2 = new File("something", [], parent3, "/something");
+    const parent1 = new File("that", [], parent2, "/something/that");
+    const currFile = new File("/", [], parent1, "/something/that/works.txt");
+    currFile.children[random.name] = deepCopy(random);
+    parent1.children[currFile.name] = currFile;
+    parent1.children[random.name] = deepCopy(random);
+    parent2.children[parent1.name] = parent1;
+    parent2.children[random.name] = deepCopy(random);
+    parent3.children[parent2.name] = parent2;
+    parent3.children[random.name] = deepCopy(random);
+
+    assert.deepEqual(File.createFilePath(currFile), [
+      parent3,
+      parent2,
+      parent1,
+      currFile,
+    ]);
   });
 });

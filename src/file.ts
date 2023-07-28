@@ -73,6 +73,21 @@ export class File {
     return curr;
   }
 
+  static createFilePath(file: File): File[] {
+    const filePath: File[] = [];
+    let curr: File = file;
+
+    if (file.parent == null) return [file];
+
+    while (curr.parent !== null) {
+      filePath.unshift(curr);
+      curr = curr.parent;
+    }
+    filePath.unshift(curr);
+
+    return filePath;
+  }
+
   toDict(): Dict {
     let dictThis: Dict = {};
     let childrenNames: string[] = Object.keys(this.children);
