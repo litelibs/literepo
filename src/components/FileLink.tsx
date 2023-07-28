@@ -13,7 +13,7 @@ export const FileLink = ({ file, setCurrFile }: Props) => {
   return (
     <>
       <Link
-        onPress={() => setCurrFile(file)}
+        onClick={() => setCurrFile(file)}
         css={{ color: isDir ? "Blue" : "Black", cursor: "pointer" }}
       >
         {file.name}
