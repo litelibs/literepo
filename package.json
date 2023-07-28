@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "TS_NODE_PROJECT='./tsconfig.commonjs.json' mocha --require ts-node/register tests/**/*.tsx",
     "format": "npx prettier . --check",
-    "lint": "next lint"
+    "lint": "next lint --max-warnings 0"
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.13",
