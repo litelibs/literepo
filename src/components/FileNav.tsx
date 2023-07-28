@@ -8,6 +8,7 @@ const createFilesList = (
   setCurrFile: Dispatch<SetStateAction<File>>,
 ): JSX.Element => {
   const fileLinks: JSX.Element[] = [];
+  const repoName = "usagef";
 
   for (let i = 0; i < files.length; i++)
     fileLinks.push(
@@ -17,6 +18,7 @@ const createFilesList = (
           file={files[i]}
           setCurrFile={setCurrFile}
           isLinkDisabled={files[i] === currFile}
+          text={i === 0 ? repoName : files[i].name}
         />
       </span>,
     );
