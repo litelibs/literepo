@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { FileLink } from "./FileLink";
 import { File } from "../file";
+import { FileLink } from "./FileLink";
 
 const createFilesList = (
   files: File[],

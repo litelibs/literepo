@@ -1,11 +1,11 @@
 "use client";
-import { NextUIProvider } from "@nextui-org/react";
-import { useState, Dispatch, SetStateAction, useEffect } from "react";
-import { Box } from "../components/Box";
-import { FileNav } from "../components/FileNav";
-import { FileLink } from "../components/FileLink";
-import { File } from "../file";
 import { pathPrefix } from "@/middleware";
+import { NextUIProvider } from "@nextui-org/react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Box } from "../components/Box";
+import { FileLink } from "../components/FileLink";
+import { FileNav } from "../components/FileNav";
+import { File } from "../file";
 
 const createFileLinks = (
   files: File[],

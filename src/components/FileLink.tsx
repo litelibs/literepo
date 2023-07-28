@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
 import { Link } from "@nextui-org/react";
+import { Dispatch, SetStateAction } from "react";
 import { File } from "../file";
 
 type Props = {

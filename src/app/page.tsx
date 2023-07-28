@@ -1,11 +1,10 @@
-import React from "react";
+import { headerKeyPath, pathPrefix } from "@/middleware";
 import fs from "fs";
 import git from "isomorphic-git";
-import { TopNav } from "../components/TopNav";
-import { Content } from "../components/Content";
-import { Box } from "../components/Box";
 import { headers } from "next/headers";
-import { headerKeyPath, pathPrefix } from "@/middleware";
+import { Box } from "../components/Box";
+import { Content } from "../components/Content";
+import { TopNav } from "../components/TopNav";
 
 export default async function App() {
   const headersList = headers();
