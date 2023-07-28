@@ -2,6 +2,7 @@
 import { NextUIProvider } from "@nextui-org/react";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Box } from "../components/Box";
+import { FileNav } from "../components/FileNav";
 import { FileLink } from "../components/FileLink";
 import { File } from "../file";
 import { pathPrefix } from "@/middleware";
@@ -45,8 +46,9 @@ export const Content = ({ filePaths, directPath }: Props): JSX.Element => {
   return (
     <NextUIProvider>
       <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
-        <FileLink
-          file={currFile.parent || new File("", [], null, "")}
+        <FileNav
+          files={[currFile, currFile, currFile]}
+          currFile={currFile}
           setCurrFile={setCurrFile}
         />
         {createFileLinks(Object.values(currFile.children), setCurrFile)}
