@@ -47,7 +47,7 @@ export const Content = ({ filePaths, directPath }: Props): JSX.Element => {
     <NextUIProvider>
       <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
         <FileNav
-          files={[currFile, currFile, currFile]}
+          files={File.createFilePath(currFile)}
           currFile={currFile}
           setCurrFile={setCurrFile}
         />
