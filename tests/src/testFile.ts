@@ -88,16 +88,16 @@ describe("getFromRoot", () => {
   });
 });
 
-describe("createFilePath", () => {
+describe("toFilePath", () => {
   it("root dir", () => {
     const currFile = new File("/", [], null, "/");
-    assert.deepEqual(File.createFilePath(currFile), [currFile]);
+    assert.deepEqual(currFile.toFilePath(), [currFile]);
   });
 
   it("one level", () => {
     const parent1 = new File("/", [], null, "/");
     const currFile = new File("this", [], parent1, "/this");
-    assert.deepEqual(File.createFilePath(currFile), [parent1, currFile]);
+    assert.deepEqual(currFile.toFilePath(), [parent1, currFile]);
   });
 
   it("multi level", () => {
@@ -115,7 +115,7 @@ describe("createFilePath", () => {
     parent3.children[parent2.name] = parent2;
     parent3.children[random.name] = deepCopy(random);
 
-    assert.deepEqual(File.createFilePath(currFile), [
+    assert.deepEqual(currFile.toFilePath(), [
       parent3,
       parent2,
       parent1,

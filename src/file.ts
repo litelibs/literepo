@@ -73,7 +73,8 @@ export class File {
     return curr;
   }
 
-  static createFilePath(file: File): File[] {
+  toFilePath(): File[] {
+    const file = this;
     const filePath: File[] = [];
     let curr: File = file;
 
