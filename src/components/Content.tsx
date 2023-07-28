@@ -11,7 +11,11 @@ const createFileLinks = (
 ): JSX.Element => {
   const fileLinks: JSX.Element[] = [];
   for (let i = 0; i < files.length; i++)
-    fileLinks.push(<FileLink file={files[i]} setCurrFile={setCurrFile} />);
+    fileLinks.push(
+      <div key={i}>
+        <FileLink file={files[i]} setCurrFile={setCurrFile} />
+      </div>,
+    );
   return <>{fileLinks}</>;
 };
 
