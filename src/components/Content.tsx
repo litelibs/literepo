@@ -40,17 +40,17 @@ export const Content = ({ filePaths, directPath }: Props) => {
     window.history.replaceState(null, "", pathPrefix + currFile.filePath);
   }, [currFile]);
 
+  if (isSsr) return <></>;
+
   return (
-    !isSsr && (
-      <NextUIProvider>
-        <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
-          <FileLink
-            file={currFile.parent || new File("", [], null, "")}
-            setCurrFile={setCurrFile}
-          />
-          {createFileLinks(Object.values(currFile.children), setCurrFile)}
-        </Box>
-      </NextUIProvider>
-    )
+    <NextUIProvider>
+      <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
+        <FileLink
+          file={currFile.parent || new File("", [], null, "")}
+          setCurrFile={setCurrFile}
+        />
+        {createFileLinks(Object.values(currFile.children), setCurrFile)}
+      </Box>
+    </NextUIProvider>
   );
 };
