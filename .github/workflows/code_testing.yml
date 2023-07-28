@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: lint
         run: |
-          bash tools/shell/run_in_test_container.sh bash tools/shell/lint.sh
+          bash tools/shell/run_in_test_container.sh bash tools/shell/testing/lint.sh
