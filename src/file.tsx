@@ -60,6 +60,19 @@ export class File {
     return File.#constructFromPaths(new File("/", [], null, "/"), filePaths);
   }
 
+  static getFromRoot(root: File, filePath: string): File {
+    let curr = root;
+    let filePathSections: string[];
+
+    if (filePath === "/") return root;
+
+    filePathSections = filePath.split("/").slice(1);
+
+    for (let i = 0; i < filePathSections.length; i++)
+      curr = curr.children[filePathSections[i]];
+    return curr;
+  }
+
   toDict(): Dict {
     let dictThis: Dict = {};
     let childrenNames: string[] = Object.keys(this.children);

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 export const headerKeyPath = "direct-pathname";
+export const pathPrefix = "path";
 
 export function middleware(request: NextRequest) {
   const url = "http://" + request.nextUrl.host + "/";

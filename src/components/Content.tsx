@@ -4,6 +4,7 @@ import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Box } from "../components/Box";
 import { FileLink } from "../components/FileLink";
 import { File } from "../file";
+import { pathPrefix } from "@/middleware";
 
 const createFileLinks = (
   files: File[],
@@ -21,16 +22,19 @@ const createFileLinks = (
 
 type Props = {
   filePaths: string[];
-  directPath: any;
+  directPath: string | null;
 };
 
 export const Content = ({ filePaths, directPath }: Props) => {
   const rootDir = File.constructFromPaths(filePaths);
-  const [currFile, setCurrFile] = useState(rootDir);
+  const [currFile, setCurrFile] = useState(
+    directPath === null ? rootDir : File.getFromRoot(rootDir, directPath),
+  );
+
   useEffect(() => {
     // the replaceState func is randomly appending instead of replacing (presetting to '/' is a patch)
     window.history.replaceState(null, "", "/");
-    window.history.replaceState(null, "", "path" + currFile.filePath);
+    window.history.replaceState(null, "", pathPrefix + currFile.filePath);
   }, [currFile]);
 
   return (
