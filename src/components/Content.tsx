@@ -1,4 +1,5 @@
 "use client";
+import { NextUIProvider } from "@nextui-org/react";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Box } from "../components/Box";
 import { FileLink } from "../components/FileLink";
@@ -29,12 +30,14 @@ export const Content = ({ filePaths, directPath }: Props) => {
   }, [currFile]);
 
   return (
-    <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
-      <FileLink
-        file={currFile.parent || new File("/", [], null, "/")}
-        setCurrFile={setCurrFile}
-      />
-      {createFileLinks(Object.values(currFile.children), setCurrFile)}
-    </Box>
+    <NextUIProvider>
+      <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
+        <FileLink
+          file={currFile.parent || new File("/", [], null, "/")}
+          setCurrFile={setCurrFile}
+        />
+        {createFileLinks(Object.values(currFile.children), setCurrFile)}
+      </Box>
+    </NextUIProvider>
   );
 };
