@@ -16,12 +16,12 @@ const createFileLinks = (
 
 type Props = {
   filePaths: string[];
+  directPath: any;
 };
 
-export const Content = ({ filePaths }: Props) => {
+export const Content = ({ filePaths, directPath }: Props) => {
   const rootDir = File.constructFromPaths(filePaths);
   const [currFile, setCurrFile] = useState(rootDir);
-
   useEffect(() => {
     // the replaceState func is randomly appending instead of replacing (presetting to '/' is a patch)
     window.history.replaceState(null, "", "/");
