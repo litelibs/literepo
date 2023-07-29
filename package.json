@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "TS_NODE_PROJECT='./tsconfig.commonjs.json' mocha --require ts-node/register tests/**/*.ts",
     "format": "npx prettier . --check",
-    "lint": "next lint && bash tools/shell/run_in_test_container.sh bash tools/shell/testing/lint.sh"
+    "lint": "next lint --max-warnings 0"
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.13",
@@ -17,6 +18,8 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "framer-motion": "^10.15.0",
+    "isomorphic-git": "^1.24.5",
     "next": "13.4.12",
     "postcss": "8.4.27",
     "react": "18.2.0",
@@ -25,7 +28,13 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/expect": "^24.3.0",
+    "@types/mocha": "^10.0.1",
     "eslint-config-prettier": "^8.8.0",
-    "prettier": "^3.0.0"
+    "mocha": "^10.2.0",
+    "mocha-param": "^2.0.1",
+    "prettier": "^3.0.0",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "ts-mocha": "^10.0.0"
   }
 }

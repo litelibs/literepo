@@ -7,6 +7,7 @@ RUN \
     shfmt~=3 \
     py3-pip~=22 \
     colordiff~=1 \
+    npm~=8 \
     git~=2
 RUN pip install \
   mdformat==0.*

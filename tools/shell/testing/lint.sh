@@ -6,7 +6,7 @@
 function lint_sh() {
 	local path
 
-	for path in $(find . | grep "\.sh$"); do
+	for path in $(git ls-files | grep "\.sh$"); do
 		echo "linting '$path'"
 		shfmt --diff "$path" || exit_err
 		shellcheck "$path" || exit_err
@@ -16,7 +16,7 @@ function lint_sh() {
 function lint_yml() {
 	local path
 
-	for path in $(find . | grep "\.yml$\|\.yaml$"); do
+	for path in $(git ls-files | grep "\.yml$\|\.yaml$"); do
 		echo "linting '$path'"
 		yamllint --strict "$path" || exit_err
 	done
@@ -26,7 +26,7 @@ function lint_md() {
 	local path
 	local path_temp
 
-	for path in $(find . | grep "\.md$"); do
+	for path in $(git ls-files | grep "\.md$"); do
 		echo "linting '$path'"
 		if mdformat --check "$path"; then continue; fi
 		path_temp="$(get_temp_path "$path")"
@@ -48,6 +48,9 @@ function check_sources() {
 function main() {
 	check_sources
 
+	npm install || exit_err
+	npm run format || exit_err
+	npm run lint || exit_err
 	lint_sh
 	lint_yml
 	lint_md
