@@ -3,9 +3,11 @@ import fs, { access } from "fs";
 import { readFile } from "fs/promises";
 import git from "isomorphic-git";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 import { Box } from "../components/Box";
 import { Content } from "../components/Content";
 import { TopNav } from "../components/TopNav";
+import { File } from "../file";
 import { getStartPath } from "../urlUtils";
 
 const getFileContent = (filePath: string): Promise<string> => {
@@ -14,7 +16,7 @@ const getFileContent = (filePath: string): Promise<string> => {
       let fileStat: fs.Stats;
       let fileObj: Buffer;
 
-      if (error) return resolve("invalid path '" + filePath + "'");
+      if (error) return resolve("");
 
       fileStat = fs.lstatSync(filePath);
 
@@ -28,15 +30,21 @@ const getFileContent = (filePath: string): Promise<string> => {
 };
 
 export default async function App() {
+  let fileContent: string;
   const headersList = headers();
   const startPath = getStartPath(headersList.get(headerKeyPath) || "");
-  const fileContent = await getFileContent(startPath);
+  const filePaths = await git.listFiles({ fs, dir: "." });
+  const rootDir = File.constructFromPaths(filePaths);
+
+  if (!File.isValidPath(rootDir, startPath)) notFound();
+
+  fileContent = await getFileContent(startPath);
 
   return (
     <Box css={{ maxW: "100%" }}>
       <TopNav />
       <Content
-        filePaths={await git.listFiles({ fs, dir: "." })}
+        filePaths={filePaths}
         startPath={startPath}
         fileContent={fileContent}
       />

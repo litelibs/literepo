@@ -73,6 +73,21 @@ export class File {
     return curr;
   }
 
+  static isValidPath(root: File, filePath: string): boolean {
+    let curr = root;
+
+    if (filePath === "/") return true;
+
+    const filePathSections: string[] = filePath.split("/");
+
+    for (let i = 0; i < filePathSections.length; i++) {
+      if (!(filePathSections[i] in curr.children)) return false;
+      curr = curr.children[filePathSections[i]];
+    }
+
+    return true;
+  }
+
   toFilePath(): File[] {
     const file = this;
     const filePath: File[] = [];

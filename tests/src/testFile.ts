@@ -123,3 +123,68 @@ describe("toFilePath", () => {
     ]);
   });
 });
+
+describe("isValidPath", () => {
+  describe("valid", () => {
+    it("root path", () => {
+      const root = new File("/", [], null, "/");
+      assert.equal(File.isValidPath(root, "/"), true);
+    });
+
+    it("one level", () => {
+      const root = new File("/", [], null, "/");
+      const childL1 = new File("thisone", [], root, "thisone");
+      root.children[childL1.name] = childL1;
+
+      assert.equal(File.isValidPath(root, "thisone"), true);
+    });
+
+    it("multi level", () => {
+      const root = new File("/", [], null, "/");
+      const childL1 = new File("thisone", [], root, "thisone");
+      const childL2 = new File("another", [], childL1, "thisone/another");
+      const childL3 = new File(
+        "last.one",
+        [],
+        childL2,
+        "thisone/another/last.one",
+      );
+      root.children[childL1.name] = childL1;
+      childL1.children[childL2.name] = childL2;
+      childL2.children[childL3.name] = childL3;
+
+      assert.equal(File.isValidPath(root, "thisone/another/last.one"), true);
+    });
+  });
+  describe("invalid", () => {
+    it("root path", () => {
+      const root = new File("/", [], null, "/");
+      assert.equal(File.isValidPath(root, "something"), false);
+    });
+
+    it("one level", () => {
+      const root = new File("/", [], null, "/");
+      const childL1 = new File("thisone", [], root, "thisone");
+      root.children[childL1.name] = childL1;
+
+      assert.equal(File.isValidPath(root, "random"), false);
+    });
+
+    it("multi level", () => {
+      const root = new File("/", [], null, "/");
+      const childL1 = new File("thisone", [], root, "thisone");
+      const childL2 = new File("another", [], childL1, "thisone/another");
+      const childL3 = new File(
+        "last.one",
+        [],
+        childL2,
+        "thisone/another/last.one",
+      );
+      root.children[childL1.name] = childL1;
+      childL1.children[childL2.name] = childL2;
+      childL2.children[childL3.name] = childL3;
+
+      assert.equal(File.isValidPath(root, "thisone/nope/last.one"), false);
+    });
+  });
+});
