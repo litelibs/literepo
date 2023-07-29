@@ -1,4 +1,5 @@
 import { Link } from "@nextui-org/react";
+import { JSX } from "react";
 import { File } from "../file";
 import { pathPrefix } from "../middleware";
 

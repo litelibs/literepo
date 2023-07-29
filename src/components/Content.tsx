@@ -1,6 +1,6 @@
 "use client";
 import { NextUIProvider } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { Box } from "../components/Box";
 import { FileLink } from "../components/FileLink";
 import { FileNav } from "../components/FileNav";

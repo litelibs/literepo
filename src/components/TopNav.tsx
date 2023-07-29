@@ -1,6 +1,6 @@
 "use client";
 import { Button, Link, Navbar, NextUIProvider, Text } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 
 export const TopNav = (): JSX.Element => {
   const [isSsr, setIsSsr] = useState(true);

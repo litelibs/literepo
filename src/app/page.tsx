@@ -9,7 +9,7 @@ import { TopNav } from "../components/TopNav";
 import { getStartPath } from "../urlUtils";
 
 const getFileContent = (filePath: string): Promise<string> => {
-  return new Promise(async (resolve) => {
+  return new Promise((resolve) => {
     access(filePath, fs.constants.R_OK, async (error) => {
       let fileStat: fs.Stats;
       let fileObj: Buffer;
