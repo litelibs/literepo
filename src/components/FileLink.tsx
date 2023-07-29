@@ -1,17 +1,15 @@
 import { Link } from "@nextui-org/react";
-import { Dispatch, SetStateAction } from "react";
 import { File } from "../file";
+import { pathPrefix } from "../middleware";
 
 type Props = {
   file: File;
-  setCurrFile: Dispatch<SetStateAction<File>>;
   isLinkDisabled?: boolean;
   text?: string;
 };
 
 export const FileLink = ({
   file,
-  setCurrFile,
   isLinkDisabled,
   text,
 }: Props): JSX.Element => {
@@ -22,8 +20,8 @@ export const FileLink = ({
     <Link css={{ color: "Black", cursor: "default" }}>{innerText}</Link>
   ) : (
     <Link
-      onClick={() => setCurrFile(file)}
       css={{ color: isDir ? "Blue" : "Black", cursor: "pointer" }}
+      href={"/" + pathPrefix + "/" + file.filePath}
     >
       {innerText}
     </Link>

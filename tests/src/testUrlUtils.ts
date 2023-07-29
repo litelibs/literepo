@@ -11,6 +11,9 @@ describe("getStartPath", () => {
       [pathPrefix + "/", "/"],
       [pathPrefix + "/this", "this"],
       [pathPrefix + "/something/to/try.go", "something/to/try.go"],
+      ["/" + pathPrefix, "/"],
+      ["/" + pathPrefix + "/", "/"],
+      ["/" + pathPrefix + "/README.md", "README.md"],
     ],
     (testCase: string[]) => {
       assert.equal(getStartPath(testCase[0]), testCase[1]);

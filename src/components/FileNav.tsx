@@ -1,12 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
 import { File } from "../file";
 import { FileLink } from "./FileLink";
 
-const createFilesList = (
-  files: File[],
-  currFile: File,
-  setCurrFile: Dispatch<SetStateAction<File>>,
-): JSX.Element => {
+const createFilesList = (files: File[], currFile: File): JSX.Element => {
   const fileLinks: JSX.Element[] = [];
   const repoName = "usagef";
 
@@ -16,7 +11,6 @@ const createFilesList = (
         {i > 0 && <span style={{ padding: "0 6px" }}>/</span>}
         <FileLink
           file={files[i]}
-          setCurrFile={setCurrFile}
           isLinkDisabled={files[i] === currFile}
           text={i === 0 ? repoName : files[i].name}
         />
@@ -29,13 +23,8 @@ const createFilesList = (
 type Props = {
   files: File[];
   currFile: File;
-  setCurrFile: Dispatch<SetStateAction<File>>;
 };
 
-export const FileNav = ({
-  files,
-  currFile,
-  setCurrFile,
-}: Props): JSX.Element => {
-  return createFilesList(files, currFile, setCurrFile);
+export const FileNav = ({ files, currFile }: Props): JSX.Element => {
+  return createFilesList(files, currFile);
 };

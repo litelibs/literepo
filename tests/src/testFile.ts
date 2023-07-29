@@ -67,7 +67,7 @@ describe("getFromRoot", () => {
   });
 
   it("single level path", () => {
-    const filePath = "/something.txt";
+    const filePath = "something.txt";
     const file1 = new File("something.txt", [], null, filePath);
     const root = new File("/", [file1], null, "/");
     root.children[file1.name] = file1;
@@ -75,7 +75,7 @@ describe("getFromRoot", () => {
     assert.equal(File.getFromRoot(root, filePath), file1);
   });
   it("big root and three level path", () => {
-    const filePath = "/this/file/isit.txt";
+    const filePath = "this/file/isit.txt";
     const file3 = new File("isit.txt", [], null, filePath);
     const file2 = new File("file", [file3], null, "/this/file");
     const file1 = new File("this", [file2], null, "/this");

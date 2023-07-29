@@ -66,7 +66,7 @@ export class File {
 
     if (filePath === "/") return root;
 
-    filePathSections = filePath.split("/").slice(1);
+    filePathSections = filePath.split("/");
 
     for (let i = 0; i < filePathSections.length; i++)
       curr = curr.children[filePathSections[i]];
