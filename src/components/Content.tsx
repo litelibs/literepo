@@ -23,14 +23,14 @@ const createFileLinks = (
 
 type Props = {
   filePaths: string[];
-  directPath: string | null;
+  startPath: string;
 };
 
-export const Content = ({ filePaths, directPath }: Props): JSX.Element => {
+export const Content = ({ filePaths, startPath }: Props): JSX.Element => {
   const [isSsr, setIsSsr] = useState(true);
   const rootDir = File.constructFromPaths(filePaths);
   const [currFile, setCurrFile] = useState(
-    directPath === null ? rootDir : File.getFromRoot(rootDir, directPath),
+    File.getFromRoot(rootDir, startPath),
   );
 
   useEffect(() => setIsSsr(false), []);
